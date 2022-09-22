@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 )
 
 func FetchTitle(title string) ([]byte, error) {
@@ -16,7 +17,7 @@ func FetchTitle(title string) ([]byte, error) {
 		return nil, err
 	}
 
-	req.Header.Add("X-RapidAPI-Key", "da18f18ba0mshf2809c081a0bd98p150885jsn589bed44bafc")
+	req.Header.Add("X-RapidAPI-Key", os.Getenv("X-RapidAPI-Key"))
 	req.Header.Add("X-RapidAPI-Host", "imdb8.p.rapidapi.com")
 
 	res, err := http.DefaultClient.Do(req)
